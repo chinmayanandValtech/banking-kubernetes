@@ -2,33 +2,33 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: customer-service
+  name: account-service
 
 spec:
-  replicas: 1
+  replicas: 2
 
   selector:
     matchLabels:
-      app: customer-service
+      app: account-service
 
   template:
     metadata:
       labels:
-        app: customer-service
+        app: account-service
 
     spec:
       containers:
-        - name: customer-service
+        - name: account-service
 
-          image: chinmayanand5613/customer-service:1.0
+          image: chinmayanand5613/account-service:1.1
           imagePullPolicy: IfNotPresent
 
           ports:
-            - containerPort: 8081
+            - containerPort: 8082
 
           env:
             - name: DB_URL
-              value: jdbc:postgresql://postgres:5432/customerdb
+              value: jdbc:postgresql://postgres:5432/accountdb
 
             - name: DB_USERNAME
               valueFrom:
@@ -50,5 +50,6 @@ spec:
 
             - name: SPRING_PROFILES_ACTIVE
               value: docker
+
             - name: ZIPKIN_ENDPOINT
               value: http://zipkin:9411/api/v2/spans

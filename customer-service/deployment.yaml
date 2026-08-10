@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: customer-service
-          image: chinmayanand5613/customer-service:05c3f53
+          image: chinmayanand5613/customer-service:initial
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8081

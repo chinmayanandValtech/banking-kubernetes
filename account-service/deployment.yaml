@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: account-service
-          image: chinmayanand5613/account-service:4449bb2
+          image: chinmayanand5613/account-service:initial
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8082

@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: config-server
-          image: chinmayanand5613/config-server:1.1
+          image: chinmayanand5613/config-server:initial
           imagePullPolicy: IfNotPresent
 
           ports:

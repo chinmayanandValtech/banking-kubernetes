@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: chinmayanand5613/auth-service:57dbbf1
+          image: chinmayanand5613/auth-service:initial
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8082

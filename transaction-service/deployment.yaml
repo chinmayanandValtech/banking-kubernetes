@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: transaction-service
-          image: chinmayanand5613/transaction-service:initial
+          image: chinmayanand5613/transaction-service:a646758
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8083

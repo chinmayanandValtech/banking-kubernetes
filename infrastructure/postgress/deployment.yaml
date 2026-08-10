@@ -41,11 +41,22 @@ spec:
             - name: POSTGRES_DB
               value: account_db
 
+            - name: POSTGRES_MULTIPLE_DATABASES
+              value: auth_db,customer_db,transaction_db
+
           volumeMounts:
             - name: postgres-storage
               mountPath: /var/lib/postgresql/data
+
+            - name: postgres-init-scripts
+              mountPath: /docker-entrypoint-initdb.d
 
       volumes:
         - name: postgres-storage
           persistentVolumeClaim:
             claimName: postgres-pvc
+
+        - name: postgres-init-scripts
+          configMap:
+            name: postgres-init-scripts
+            defaultMode: 0755

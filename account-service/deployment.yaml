@@ -5,7 +5,6 @@ metadata:
   namespace: default
 spec:
   replicas: 1
-
   selector:
     matchLabels:
       app: account-service
@@ -16,8 +15,7 @@ spec:
     spec:
       containers:
         - name: account-service
-
-          image: chinmayanand5613/account-service:initial
+          image: chinmayanand5613/account-service:4449bb2
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8082
@@ -34,7 +32,6 @@ spec:
                 secretKeyRef:
                   name: postgres-secret
                   key: POSTGRES_PASSWORD
-
             - name: CONFIG_SERVER_URL
               value: http://config-server:8888
             - name: EUREKA_URL

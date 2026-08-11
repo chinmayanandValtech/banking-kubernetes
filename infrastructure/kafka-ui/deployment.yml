@@ -20,7 +20,8 @@ spec:
       containers:
         - name: kafka-ui
 
-          image: provectuslabs/kafka-ui:<PINNED_VERSION>
+          image: provectuslabs/kafka-ui:latest
+          imagePullPolicy: IfNotPresent
 
           ports:
             - containerPort: 8080

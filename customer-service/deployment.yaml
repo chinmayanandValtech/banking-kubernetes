@@ -20,7 +20,7 @@ spec:
             - containerPort: 8081
           env:
             - name: DB_URL
-              value: jdbc:postgresql://postgres:5432/customerdb
+              value: jdbc:postgresql://postgres:5432/customer_db
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:

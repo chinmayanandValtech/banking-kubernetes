@@ -1,29 +1,65 @@
 apiVersion: apps/v1
 kind: Deployment
+
 metadata:
   name: transaction-service
+  namespace: default
+
 spec:
   replicas: 1
+
   selector:
     matchLabels:
       app: transaction-service
+
   template:
     metadata:
       labels:
         app: transaction-service
+
     spec:
       containers:
         - name: transaction-service
+
           image: chinmayanand5613/transaction-service:6054865
           imagePullPolicy: IfNotPresent
+
           ports:
             - containerPort: 8083
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+
+            limits:
+              cpu: 500m
+              memory: 512Mi
+
           env:
+            - name: DB_URL
+              value: jdbc:postgresql://postgres:5432/transaction_db
+
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_USER
+
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres-secret
+                  key: POSTGRES_PASSWORD
+
             - name: SPRING_PROFILES_ACTIVE
               value: docker
+
             - name: CONFIG_SERVER_URL
               value: http://config-server:8888
+
             - name: EUREKA_URL
               value: http://service-registry:8761/eureka
+
             - name: ZIPKIN_ENDPOINT
               value: http://zipkin:9411/api/v2/spans

@@ -3,6 +3,7 @@ kind: Deployment
 
 metadata:
   name: grafana
+  namespace: default
 
 spec:
   replicas: 1
@@ -18,25 +19,56 @@ spec:
 
     spec:
       containers:
+
         - name: grafana
 
-          image: grafana/grafana:latest
+          image: grafana/grafana:12.1.1
+
+          imagePullPolicy: IfNotPresent
 
           ports:
             - containerPort: 3000
 
           env:
+
             - name: GF_SECURITY_ADMIN_USER
-              value: admin
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-admin-secret
+                  key: GF_SECURITY_ADMIN_USER
 
             - name: GF_SECURITY_ADMIN_PASSWORD
-              value: admin
+              valueFrom:
+                secretKeyRef:
+                  name: grafana-admin-secret
+                  key: GF_SECURITY_ADMIN_PASSWORD
+
+            # Grafana is served behind Traefik at /grafana
+            - name: GF_SERVER_ROOT_URL
+              value: "http://13.207.145.83/grafana/"
+
+            - name: GF_SERVER_SERVE_FROM_SUB_PATH
+              value: "true"
+
+
+          resources:
+
+            requests:
+              cpu: 100m
+              memory: 256Mi
+
+            limits:
+              cpu: 500m
+              memory: 512Mi
 
           volumeMounts:
+
             - name: grafana-storage
               mountPath: /var/lib/grafana
 
       volumes:
+
         - name: grafana-storage
+
           persistentVolumeClaim:
             claimName: grafana-pvc

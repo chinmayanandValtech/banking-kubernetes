@@ -11,6 +11,17 @@ spec:
   rules:
     - http:
         paths:
+
+          # Grafana
+          - path: /grafana
+            pathType: Prefix
+            backend:
+              service:
+                name: grafana
+                port:
+                  number: 3000
+
+          # API Gateway
           - path: /
             pathType: Prefix
             backend:

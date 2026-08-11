@@ -3,6 +3,7 @@ kind: PersistentVolumeClaim
 
 metadata:
   name: grafana-pvc
+  namespace: default
 
 spec:
   accessModes:
@@ -10,4 +11,4 @@ spec:
 
   resources:
     requests:
-      storage: 1Gi
+      storage: 2Gi

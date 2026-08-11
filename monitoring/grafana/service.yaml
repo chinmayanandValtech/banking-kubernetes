@@ -3,6 +3,7 @@ kind: Service
 
 metadata:
   name: grafana
+  namespace: default
 
 spec:
   selector:

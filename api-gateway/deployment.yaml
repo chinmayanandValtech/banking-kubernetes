@@ -3,6 +3,7 @@ kind: Deployment
 
 metadata:
   name: api-gateway
+  namespace: default
 
 spec:
   replicas: 1
@@ -20,11 +21,20 @@ spec:
       containers:
         - name: api-gateway
 
-          image: chinmayanand5613/api-gateway:1.0
+          image: chinmayanand5613/api-gateway:7d87aa7
           imagePullPolicy: IfNotPresent
 
           ports:
             - containerPort: 8080
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+
+            limits:
+              cpu: 500m
+              memory: 512Mi
 
           env:
             - name: SPRING_PROFILES_ACTIVE

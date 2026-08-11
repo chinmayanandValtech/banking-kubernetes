@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: service-registry
-          image: chinmayanand5613/service-registry:141aa00
+          image: chinmayanand5613/service-registry:6128ad4
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8761

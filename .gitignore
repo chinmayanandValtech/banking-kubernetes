@@ -1,1 +1,2 @@
 infrastructure/postgress/secret.yaml
+auth-service/mail-secret.yaml

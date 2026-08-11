@@ -1,13 +1,15 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
+
 metadata:
   name: banking-ingress
+  namespace: default
+
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
 
   rules:
-    - host: bank.local
-      http:
+    - http:
         paths:
           - path: /
             pathType: Prefix

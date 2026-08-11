@@ -21,7 +21,7 @@ spec:
             - containerPort: 8082
           env:
             - name: DB_URL
-              value: jdbc:postgresql://postgres:5432/accountdb
+              value: jdbc:postgresql://postgres:5432/account_db
             - name: DB_USERNAME
               valueFrom:
                 secretKeyRef:

@@ -48,3 +48,6 @@ spec:
 
             - name: ZIPKIN_ENDPOINT
               value: http://zipkin:9411/api/v2/spans
+
+            - name: OBSERVABILITY_ZIPKIN_BASE_URL
+              value: http://zipkin:9411

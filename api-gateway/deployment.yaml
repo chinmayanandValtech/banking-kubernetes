@@ -1,50 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
-
 metadata:
   name: api-gateway
   namespace: default
-
 spec:
   replicas: 1
-
   selector:
     matchLabels:
       app: api-gateway
-
   template:
     metadata:
       labels:
         app: api-gateway
-
     spec:
       containers:
         - name: api-gateway
-
-          image: chinmayanand5613/api-gateway:7d87aa7
+          image: chinmayanand5613/api-gateway:82a2056
           imagePullPolicy: IfNotPresent
-
           ports:
             - containerPort: 8080
-
           resources:
             requests:
               cpu: 100m
               memory: 256Mi
-
             limits:
               cpu: 500m
               memory: 512Mi
-
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: docker
-
             - name: CONFIG_SERVER_URL
               value: http://config-server:8888
-
             - name: EUREKA_URL
               value: http://service-registry:8761/eureka
-
             - name: ZIPKIN_ENDPOINT
               value: http://zipkin:9411/api/v2/spans

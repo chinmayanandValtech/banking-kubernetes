@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: api-gateway
-          image: chinmayanand5613/api-gateway:dba7aed
+          image: chinmayanand5613/api-gateway:4fb03c1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
